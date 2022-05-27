@@ -16,4 +16,4 @@ fi
 
 DOCKER_IMAGE=ghcr.io/zephyrproject-rtos/zephyr-build:latest
 
-docker run -ti -v $PWD:/workdir $DEVICE_FLAG $DOCKER_IMAGE
+docker run -ti --rm -v $PWD:/workdir $DEVICE_FLAG $DOCKER_IMAGE
