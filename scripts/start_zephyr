@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+DEVICE=/dev/ttyACM0
+
+# ----------------------------------------
+
+if [ -c "$DEVICE" ]; then
+  echo "Attaching $DEVICE"
+  DEVICE_FLAG="--device=$DEVICE"
+else
+  echo "$DEVICE is unplugged"
+  DEVICE_FLAG=""
+fi
+
+DOCKER_IMAGE=ghcr.io/zephyrproject-rtos/zephyr-build:latest
+
+docker run -ti -v $PWD:/workdir $DEVICE_FLAG $DOCKER_IMAGE

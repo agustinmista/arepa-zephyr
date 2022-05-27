@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+
+# Zephyr SDK work dir
+ZEPHYR_SDK=$PWD/zephyr_sdk
+
+# ----------------------------------------
+
+source $ZEPHYR_SDK/zephyr/zephyr-env.sh
+
+sudo -E west flash
