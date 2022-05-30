@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -e
+
+# Parameters
+PROJECT=$1
+BOARD=$2
+
+# Zephyr SDK work dir
+ZEPHYR_SDK=$PWD/zephyr_sdk
+
+# ----------------------------------------
+
+# Initialize the workspace
+if [ -d $ZEPHYR_SDK ]; then
+  echo "Workspace $ZEPHYR_SDK already exists. Skipping..."
+else
+  west init $ZEPHYR_SDK
+fi
+
+source $ZEPHYR_SDK/zephyr/zephyr-env.sh
+
+# Update the workspace
+west update
+
+# Build the target application
+rm -rf build
+west build -b $BOARD $PROJECT
